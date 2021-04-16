@@ -56,6 +56,13 @@ COND_T add2CondList(char *CondStr) {
 
 int add2SceList(IotPacketInterface recvStruct) {
     if (atoi(recvStruct.opCode) == 6) {
+        int hash = DJBHash(recvStruct.payLoad, strlen(recvStruct.payLoad));
+        SCE_TRIGGER_T tmp_sce = SceCmdHead.next;
+        while (tmp_sce != NULL) {
+            if (tmp_sce->Hash == hash)
+                return 0;
+            tmp_sce = tmp_sce->TriggerListNextTrigger;
+        }
         int OutStrSize = 0;
         char **outStr = StrSplit(recvStruct.payLoad, 200, &OutStrSize, '_');
         if (OutStrSize != 7) {
@@ -79,14 +86,7 @@ int add2SceList(IotPacketInterface recvStruct) {
                     releaseStr(outStr, OutStrSize);
                     return -3;
                 }
-                int hash = DJBHash(outStr[1], strlen(outStr[1]));
                 SCE_TRIGGER_T tmp = SceCmdHead.next;
-                while (tmp != NULL) {
-                    if (tmp->Hash == hash)
-                        return 0;
-                    tmp = tmp->TriggerListNextTrigger;
-                }
-                tmp = SceCmdHead.next;
                 if (tmp != NULL)
                     while (tmp->TriggerListNextTrigger != NULL) {
                         tmp = tmp->TriggerListNextTrigger;
@@ -151,7 +151,6 @@ int add2SceList(IotPacketInterface recvStruct) {
                         flag++;
                     }
                     Stringcut(outStr1[3],startIndex,flag-1,CondStr);
-                    printf("%d\n",SceCmd_Condition_Head.ConditionNum);
                     Condition->ConditionPointer = add2CondList(CondStr);
                     i++;
                 }

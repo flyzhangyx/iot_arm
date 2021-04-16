@@ -69,6 +69,11 @@ void *RecvMsg() {
                 isRegSign = 1;
                 printf("SIGN SUCCESS\n");
                 break;
+            case 7:
+                if (AddCondMsg2List(iotRecStruct)) {
+                    printf("Add CondMsg Err\n");
+                }
+                break;
             default:
                 if (AddMsg2List(iotRecStruct) != 0) {
                     printf("Add Msg Err\n");

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "KaisaEncrypt.h"
 #include "SceCmdConfig.h"
+
 extern int isRsaKeyGet;
 extern int whileThreadFlag;
 typedef
@@ -24,6 +25,7 @@ struct MSG_FROM_IOT_HEAD
     MSG_FROM_IOT_T first;
     int len;
 }MSG_HEAD;
+int AddCondMsg2List(IotPacketInterface CondRecvStruct);
 int AddMsg2List(IotPacketInterface recvStruct);
 void CreateExeMsgThread();
 #endif //UNTITLED_SCECMD_H
