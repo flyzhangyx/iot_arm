@@ -12,6 +12,7 @@
 
 extern int isRsaKeyGet;
 extern int whileThreadFlag;
+extern char HBATime[20];
 typedef
 struct MSG_FROM_IOT_DEV
 {
@@ -27,5 +28,6 @@ struct MSG_FROM_IOT_HEAD
 }MSG_HEAD;
 int AddCondMsg2List(IotPacketInterface CondRecvStruct);
 int AddMsg2List(IotPacketInterface recvStruct);
+int checkSceTriggerEvent(char *TriggerStr);
 void CreateExeMsgThread();
 #endif //UNTITLED_SCECMD_H

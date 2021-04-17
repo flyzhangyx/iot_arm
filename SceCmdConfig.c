@@ -42,8 +42,11 @@ COND_T add2CondList(char *CondStr) {
     } else
         Condition = tmp->CondListNextMoreCond;
     memset(Condition, 0, sizeof(struct cond));
+    Condition->CondListNextMoreCond = NULL;
     int OutStrSize2 = 0;
     char **outStr2 = StrSplit(CondStr, strlen(CondStr), &OutStrSize2, '+');//CMD_CONTENT
+    if(OutStrSize2!=3)
+        return -3;
     Condition->ConditionIotId = atoi(outStr2[0]);
     Condition->ConditionDevClass = atoi(outStr2[1]);
     Condition->ConditionJudgment = outStr2[2][0] == '<' ? -1 : (outStr2[2][0] == '>' ? 1 : 0);
@@ -64,7 +67,7 @@ int add2SceList(IotPacketInterface recvStruct) {
             tmp_sce = tmp_sce->TriggerListNextTrigger;
         }
         int OutStrSize = 0;
-        char **outStr = StrSplit(recvStruct.payLoad, 200, &OutStrSize, '_');
+        char **outStr = StrSplit(recvStruct.payLoad, strlen(recvStruct.payLoad), &OutStrSize, '_');
         if (OutStrSize != 7) {
             releaseStr(outStr, OutStrSize);
             return -1;
@@ -79,7 +82,7 @@ int add2SceList(IotPacketInterface recvStruct) {
                     return -2;
                 }
                 int OutStrSize2 = 0;
-                char **outStr2 = StrSplit(outStr1[3], strlen(outStr1[3]), &OutStrSize2, '+');//CMD_CONTENT
+                char **outStr2 = StrSplit(outStr1[3], strlen(outStr1[3]), &OutStrSize2, '+');//CMD_CONDITIONS
                 if (OutStrSize2 % 3 != 0) {
                     releaseStr(outStr2, OutStrSize2);
                     releaseStr(outStr1, OutStrSize1);
@@ -110,6 +113,11 @@ int add2SceList(IotPacketInterface recvStruct) {
                 NewSceCmd->TriggerJudgment = outStr1[2][0] == '<' ? -1 : (outStr1[2][0] == '>' ? 1 : 0);
                 Stringcut(outStr1[2], 1, strlen(outStr1[2]), NewSceCmd->TriggerEvent);
                 NewSceCmd->Hash = hash;
+                if(NewSceCmd->TriggerIotId==0)//A Time Sce Cmd
+                {
+                    Stringcut(outStr[3],0,strlen(outStr[3]),NewSceCmd->TriggerTime);
+                    Stringcut(outStr[4],0,strlen(outStr[4]),NewSceCmd->TriggerDate);
+                }
                 int flag = 0;
                 int i = 0;
                 SCE_CONDITION_T Condition = NULL;

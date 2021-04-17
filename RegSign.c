@@ -20,5 +20,5 @@ int RegSign(char* Id ,char* pwd){
     Stringcut(encodedCryptoByte, 0, strlen(Id) * rsaKey.encryptBlockBytes * 4 - 1, tmp.payLoad + 8);
     tmp.payLoad[strlen(Id) * rsaKey.encryptBlockBytes * 4 + 8] = '_';
     memcpy(buf, &tmp, sizeof(IotPacketInterface));
-    return send(LocalSocket,buf,205,0);
+    return send(LocalSocket,buf,sizeof(IotPacketInterface),0);
 }

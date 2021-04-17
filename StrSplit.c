@@ -59,6 +59,8 @@ char **StrSplit(char *srcStr, int srcStrLen, int *outBufferLen, char delim)
 
 void releaseStr(char **StrVector, int size)
 {
+    if(StrVector==NULL)
+        return;
     while (size--)
     {
         free(StrVector[size]);

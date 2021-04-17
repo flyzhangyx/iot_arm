@@ -7,7 +7,18 @@
 #include "SceCmd.h"
 
 int ErrCnt = 0;
-
+char HBATime[20];
+char DateFromServer[8];
+void CharacterReplace(char NeedRepSrc,char des,char *SrcStr)
+{
+    while (*(SrcStr++)!=0)
+    {
+        if(*(SrcStr-1)==NeedRepSrc)
+        {
+            *(SrcStr-1) = des;
+        }
+    }
+}
 /***
  * Exe Recv Msg Quickly
  * No Waiting
@@ -28,13 +39,14 @@ void *RecvMsg() {
             continue;
         }
         if (iotRecStruct.opCode[0] == 'H') {
-            printf("%s", iotRecStruct);
+            printf("%s", &iotRecStruct);
+            Stringcut(&iotRecStruct, 3, 21, HBATime);
             continue;
         }
         switch (atoi(iotRecStruct.opCode)) {
             case 1: {
                 int OutStrSize = 0;
-                char **outStr = StrSplit(iotRecStruct.payLoad, 200, &OutStrSize, '_');
+                char **outStr = StrSplit(iotRecStruct.payLoad, strlen(iotRecStruct.payLoad), &OutStrSize, '_');
                 if (OutStrSize != 3) {
                     releaseStr(outStr, OutStrSize);
                     break;
@@ -73,6 +85,26 @@ void *RecvMsg() {
                 if (AddCondMsg2List(iotRecStruct)) {
                     printf("Add CondMsg Err\n");
                 }
+                break;
+            case 0:
+                Decrypt(iotRecStruct.payLoad,strlen(iotRecStruct.payLoad),pin,iotRecStruct.payLoad);
+                int OutStrSize = 0;
+                char **outStr = StrSplit(iotRecStruct.payLoad, strlen(iotRecStruct.payLoad), &OutStrSize, '_');
+                if (OutStrSize != 2) {
+                    releaseStr(outStr, OutStrSize);
+                    break;
+                }
+                switch (atoi(outStr[0])) {
+                    case 98:
+                        //CharacterReplace('+','-',outStr[1]);
+                        checkSceTriggerEvent(outStr[1]);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        break;
+                }
+                releaseStr(outStr, OutStrSize);
                 break;
             default:
                 if (AddMsg2List(iotRecStruct) != 0) {

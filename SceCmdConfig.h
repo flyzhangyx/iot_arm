@@ -38,6 +38,8 @@ typedef struct Trigger
     int TriggerDevClass;
     int TriggerJudgment;
     char TriggerEvent[10];
+    char TriggerDate[8];
+    char TriggerTime[10];
     struct Trigger* TriggerListNextTrigger;
     struct Condition* ConditionListFollowCondition;
 }*SCE_TRIGGER_T;

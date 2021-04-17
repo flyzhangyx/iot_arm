@@ -9,6 +9,30 @@
 #define EXPONENT_MAX 10000
 #define BUF_SIZE 1024
 
+const char * getWeekdayByYearday(int iY, int iM, int iD)
+{
+    int iWeekDay = -1;
+    if (1 == iM || 2 == iM)
+    {
+        iM += 12;
+        iY--;
+    }
+    iWeekDay = (iD + 1 + 2 * iM + 3 * (iM + 1) / 5 + iY + iY / 4 - iY / 100 + iY / 400) % 7;
+    switch(iWeekDay)
+    {
+        case 0 : return "0000010"; break;
+        case 1 : return "0000001"; break;//Monday
+        case 2 : return "1000000"; break;
+        case 3 : return "0100000"; break;
+        case 4 : return "0010000"; break;
+        case 5 : return "0001000"; break;
+        case 6 : return "0000100"; break;
+        default : return "0000000"; break;
+    }
+
+    return NULL;
+}
+
 unsigned int DJBHash(char* str, unsigned int len)
 {
     unsigned int hash = 5381;

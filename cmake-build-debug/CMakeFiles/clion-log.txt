@@ -1,5 +1,5 @@
-/home/ubuntu/cmake-3.16.6/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /tmp/tmp.P2dBquDJbH
--- The C compiler identification is GNU 7.5.0
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /tmp/tmp.pcYGmWE7ZC
+-- The C compiler identification is GNU 8.3.0
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -8,8 +8,8 @@
 -- Detecting C compile features - done
 -- Looking for pthread.h
 -- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
 -- Looking for pthread_create in pthreads
 -- Looking for pthread_create in pthreads - not found
 -- Looking for pthread_create in pthread
@@ -17,4 +17,4 @@
 -- Found Threads: TRUE  
 -- Configuring done
 -- Generating done
--- Build files have been written to: /tmp/tmp.P2dBquDJbH/cmake-build-debug
+-- Build files have been written to: /tmp/tmp.pcYGmWE7ZC/cmake-build-debug
