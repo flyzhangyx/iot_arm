@@ -209,11 +209,12 @@ void *UpdateConditionStatus() {
                                     break;
                             }
                         } else {
-                            //printf("%s__________%s\n", tmp_cond->ConditionEvent, outStr[2]);
+                            printf("%s__________%s\n", tmp_cond->ConditionEvent, outStr[2]);
                             if (atoi(tmp_cond->ConditionEvent) == atoi(outStr[2]))
                                 tmp_cond->isConditionSatisfied = 1;
                             else
                                 tmp_cond->isConditionSatisfied = 0;
+                            printf("__________%d\n", tmp_cond->isConditionSatisfied);
                         }
                     }
                     tmp_cond = tmp_cond->CondListNextMoreCond;
@@ -250,10 +251,14 @@ int checkSceTriggerEvent(char *TriggerStr) {
             tmp->TriggerJudgment == (outStr[2][0] == '<' ? -1 : (outStr[2][0] == '>' ? 1 : 0)) &&
             !strcmp(tmp->TriggerEvent, tmpStr)) {
             SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
-            while (tmp1->ConditionListNextMoreConditions != NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
+            while (tmp1!= NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
                 tmp1 = tmp1->ConditionListNextMoreConditions;
             }
-            if (tmp1->ConditionListNextMoreConditions == NULL) {
+            if (tmp1 == NULL) {
+                tmp1 = tmp->ConditionListFollowCondition;
+                while (tmp1->ConditionListNextMoreConditions!= NULL) {
+                    tmp1 = tmp1->ConditionListNextMoreConditions;
+                }
                 if (tmp1->EndOfListCMD == NULL)
                     return -2;
                 SCE_COMMAND_T tmp2 = tmp1->EndOfListCMD;
