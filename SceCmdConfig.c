@@ -115,8 +115,9 @@ int add2SceList(IotPacketInterface recvStruct) {
                 NewSceCmd->Hash = hash;
                 if(NewSceCmd->TriggerIotId==0)//A Time Sce Cmd
                 {
-                    Stringcut(outStr[3],0,strlen(outStr[3]),NewSceCmd->TriggerTime);
-                    Stringcut(outStr[4],0,strlen(outStr[4]),NewSceCmd->TriggerDate);
+                    sprintf(NewSceCmd->TriggerTime,"%s",outStr[3]);
+                    sprintf(NewSceCmd->TriggerDate,"%s",outStr[4]);
+                    //printf("%s_%s\n",NewSceCmd->TriggerTime,NewSceCmd->TriggerDate);
                 }
                 int flag = 0;
                 int i = 0;
@@ -180,7 +181,8 @@ int add2SceList(IotPacketInterface recvStruct) {
                 memset(CMD, 0, sizeof(struct COMMAND));
                 CMD->CmdIotId = atoi(outStr1[4]);
                 CMD->CmdDevClass = atoi(outStr1[5]);
-                memcpy(CMD->CmdContent, outStr1[6], strlen(outStr1[6]) + 1);
+                sprintf(CMD->CmdContent, "%s",outStr1[6]);
+                //printf("%s %d\n",CMD->CmdContent,CMD->CmdIotId);
                 releaseStr(outStr2, OutStrSize2);
                 releaseStr(outStr1, OutStrSize1);
             }

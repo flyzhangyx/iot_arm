@@ -140,7 +140,7 @@ int AddCondMsg2List(IotPacketInterface CondRecvStruct) {
     COND_RECV_T NewConRec = (COND_RECV_T) malloc(sizeof(struct ConditionMsgRecv));
     if (NewConRec == NULL)
         return -2;
-    printf("1==========%x\n",NewConRec);
+    //printf("1==========%x\n", NewConRec);
     memset(NewConRec, 0, sizeof(IotPacketInterface));
     NewConRec->next = NULL;
     memcpy(&(NewConRec->recv), &CondRecvStruct, sizeof(IotPacketInterface));
@@ -183,7 +183,7 @@ void *UpdateConditionStatus() {
         COND_RECV_T tmp_cond_recv = CondRecvHead.next;
         while (tmp_cond_recv != NULL) {
             int OutStrSize = 0;
-            printf("*****%x_%x\n", &(tmp_cond_recv->recv), tmp_cond_recv);
+            //printf("*****%x_%x\n", &(tmp_cond_recv->recv), tmp_cond_recv);
             char **outStr = StrSplit(tmp_cond_recv->recv.payLoad, strlen(tmp_cond_recv->recv.payLoad), &OutStrSize,
                                      '_');
             if (OutStrSize == 5) {
@@ -209,19 +209,18 @@ void *UpdateConditionStatus() {
                                     break;
                             }
                         } else {
-                            printf("%s__________%s\n", tmp_cond->ConditionEvent, outStr[2]);
                             if (atoi(tmp_cond->ConditionEvent) == atoi(outStr[2]))
                                 tmp_cond->isConditionSatisfied = 1;
                             else
                                 tmp_cond->isConditionSatisfied = 0;
-                            printf("__________%d\n", tmp_cond->isConditionSatisfied);
                         }
+                        printf("%s__________%d\n", tmp_cond->ConditionEvent, tmp_cond->isConditionSatisfied);
                     }
                     tmp_cond = tmp_cond->CondListNextMoreCond;
                 }
             }
             COND_RECV_T t = tmp_cond_recv->next;
-            printf("2==========%x\n",tmp_cond_recv);
+            //printf("2==========%x\n", tmp_cond_recv);
             if (CondRecvHead.next == tmp_cond_recv) {
                 CondRecvHead.next = t;
             }
@@ -251,12 +250,12 @@ int checkSceTriggerEvent(char *TriggerStr) {
             tmp->TriggerJudgment == (outStr[2][0] == '<' ? -1 : (outStr[2][0] == '>' ? 1 : 0)) &&
             !strcmp(tmp->TriggerEvent, tmpStr)) {
             SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
-            while (tmp1!= NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
+            while (tmp1 != NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
                 tmp1 = tmp1->ConditionListNextMoreConditions;
             }
             if (tmp1 == NULL) {
                 tmp1 = tmp->ConditionListFollowCondition;
-                while (tmp1->ConditionListNextMoreConditions!= NULL) {
+                while (tmp1->ConditionListNextMoreConditions != NULL) {
                     tmp1 = tmp1->ConditionListNextMoreConditions;
                 }
                 if (tmp1->EndOfListCMD == NULL)
@@ -271,12 +270,26 @@ int checkSceTriggerEvent(char *TriggerStr) {
                 Encrypt(tmp.payLoad, strlen(tmp.payLoad), pin, tmp.payLoad);
                 memcpy(buf, &tmp, 30);
                 send(LocalSocket, buf, 30, 0);
-                printf("Send Ok\n");
+                printf("Trigger Send %d Ok\n",tmp2->CmdIotId);
             }
         }
         tmp = tmp->TriggerListNextTrigger;
     }
     return 0;
+}
+
+void Send8Server(char *payload)
+{
+    IotPacketInterface tmpq;
+    memset(&tmpq, 0, sizeof(IotPacketInterface));
+    char buf[30];
+    tmpq.opCode[0] = '0';
+    tmpq.opCode[1] = '8';
+    tmpq.opCode[2] = 0;
+    sprintf(tmpq.payLoad, "%s", payload);
+    Encrypt(tmpq.payLoad, strlen(tmpq.payLoad), pin, tmpq.payLoad);
+    memcpy(buf, &tmpq, 30);
+    printf("No trigger Send Ok %zd\n",send(LocalSocket, buf, 30, 0));
 }
 
 void *checkTimeSceCmd() {
@@ -291,41 +304,61 @@ void *checkTimeSceCmd() {
         SCE_TRIGGER_T tmp = SceCmdHead.next;
         while (tmp != NULL) {
             if (tmp->TriggerIotId == 0) {
-                bool flag = false;
-                for (int i = 0; i < 7; i++) {
-                    if (weekday[i] + tmp->TriggerDate[i] == 2 * '1') {
-                        flag = true;
-                        break;
-                    } else {
-                        flag = false;
+                if (tmp->TriggerDevClass == 0) {
+                    SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
+                    while (tmp1 != NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
+                        tmp1 = tmp1->ConditionListNextMoreConditions;
                     }
-                }
-                if (flag == true) {
-                    int h = (HBATime[11] - tmp->TriggerTime[0]) * 10 + HBATime[12] - tmp->TriggerTime[1];
-                    int m = (HBATime[14] - tmp->TriggerTime[3]) * 10 + HBATime[15] - tmp->TriggerTime[4];
-                    int s = (HBATime[17] - tmp->TriggerTime[6]) * 10 + HBATime[18] - tmp->TriggerTime[7];
-                    if (h == 0 && m == 0 && abs(s) < 5) {
-                        SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
-                        while (tmp1->ConditionListNextMoreConditions != NULL &&
-                               tmp1->ConditionPointer->isConditionSatisfied == 1) {
+                    if (tmp1 == NULL) {
+                        tmp1 = tmp->ConditionListFollowCondition;
+                        while (tmp1->ConditionListNextMoreConditions != NULL) {
                             tmp1 = tmp1->ConditionListNextMoreConditions;
                         }
-                        if (tmp1->ConditionListNextMoreConditions == NULL) {
-                            if (tmp1->EndOfListCMD == NULL) {
-                                tmp = tmp->TriggerListNextTrigger;
-                                continue;
+                        if (tmp1->EndOfListCMD == NULL) {
+                            tmp = tmp->TriggerListNextTrigger;
+                            continue;
+                        }
+                        SCE_COMMAND_T tmp2 = tmp1->EndOfListCMD;
+                        char payload[100];
+                        sprintf(payload, "%d_%d_%s_", tmp2->CmdIotId, tmp2->CmdDevClass, tmp2->CmdContent);
+                        sleep(1);
+                        Send8Server(payload);
+                    }
+                } else {
+                    bool flag = false;
+                    for (int i = 0; i < 7; i++) {
+                        if (weekday[i] + tmp->TriggerDate[i] == 2 * '1') {
+                            flag = true;
+                            break;
+                        } else {
+                            flag = false;
+                        }
+                    }
+                    if (flag == true) {
+                        printf("%s\n",tmp->TriggerTime);
+                        int h = (HBATime[11] - tmp->TriggerTime[0]) * 10 + HBATime[12] - tmp->TriggerTime[1];
+                        int m = (HBATime[14] - tmp->TriggerTime[3]) * 10 + HBATime[15] - tmp->TriggerTime[4];
+                        int s = (HBATime[17] - tmp->TriggerTime[6]) * 10 + HBATime[18] - tmp->TriggerTime[7];
+                        if (h == 0 && m == 0 && abs(s) < 5) {
+                            SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
+                            while (tmp1 != NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
+                                tmp1 = tmp1->ConditionListNextMoreConditions;
                             }
-                            SCE_COMMAND_T tmp2 = tmp1->EndOfListCMD;
-                            IotPacketInterface tmp;
-                            memset(&tmp, 0, sizeof(IotPacketInterface));
-                            char buf[30];
-                            tmp.opCode[0] = '0';
-                            tmp.opCode[1] = '8';
-                            sprintf(tmp.payLoad, "%d_%d_%s_", tmp2->CmdIotId, tmp2->CmdDevClass, tmp2->CmdContent);
-                            Encrypt(tmp.payLoad, strlen(tmp.payLoad), pin, tmp.payLoad);
-                            memcpy(buf, &tmp, 30);
-                            send(LocalSocket, buf, 30, 0);
-                            printf("Send Ok\n");
+                            if (tmp1 == NULL) {
+                                tmp1 = tmp->ConditionListFollowCondition;
+                                while (tmp1->ConditionListNextMoreConditions != NULL) {
+                                    tmp1 = tmp1->ConditionListNextMoreConditions;
+                                }
+                                if (tmp1->EndOfListCMD == NULL) {
+                                    tmp = tmp->TriggerListNextTrigger;
+                                    continue;
+                                }
+                                SCE_COMMAND_T tmp2 = tmp1->EndOfListCMD;
+                                char payload[100];
+                                sprintf(payload, "%d_%d_%s_", tmp2->CmdIotId, tmp2->CmdDevClass, tmp2->CmdContent);
+                                sleep(1);
+                                Send8Server(payload);
+                            }
                         }
                     }
                 }
