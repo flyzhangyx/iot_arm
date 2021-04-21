@@ -35,7 +35,7 @@ int AddMsg2List(IotPacketInterface recvStruct) {
         return -1;
     memset(NewRecvMsg, 0, sizeof(MSG_FROM_IOT));
     Decrypt(recvStruct.payLoad, strlen(recvStruct.payLoad), pin, recvStruct.payLoad);
-    memcpy(&(NewRecvMsg->RecvIotPacket), &recvStruct, sizeof(MSG_FROM_IOT));
+    memcpy(&(NewRecvMsg->RecvIotPacket), &recvStruct, sizeof(IotPacketInterface));
     NewRecvMsg->next = NULL;
     if (MSG_HEAD.first == NULL)
         MSG_HEAD.first = NewRecvMsg;
@@ -175,7 +175,7 @@ void *UpdateConditionStatus() {
             tmp = tmp->CondListNextMoreCond;
         }
         GetIotData(id_list, len);
-        sleep(5);
+        sleep(3);
         if (pthread_mutex_trylock(&COND_RECV_LIST_MUTEX) != 0) {
             printf("BUSY UPDATING COND LIST\n");
             continue;
@@ -296,7 +296,7 @@ void *checkTimeSceCmd() {
     char weekday[8];
     int y, m, d;
     while (whileThreadFlag) {
-        sleep(5);
+        sleep(2);
         y = HBATime[0] * 1000 + HBATime[1] * 100 + HBATime[2] * 10 + HBATime[3];
         m = HBATime[5] * 10 + HBATime[6];
         d = HBATime[8] * 10 + HBATime[9];
@@ -339,7 +339,7 @@ void *checkTimeSceCmd() {
                         int h = (HBATime[11] - tmp->TriggerTime[0]) * 10 + HBATime[12] - tmp->TriggerTime[1];
                         int m = (HBATime[14] - tmp->TriggerTime[3]) * 10 + HBATime[15] - tmp->TriggerTime[4];
                         int s = (HBATime[17] - tmp->TriggerTime[6]) * 10 + HBATime[18] - tmp->TriggerTime[7];
-                        if (h == 0 && m == 0 && abs(s) < 5) {
+                        if (h == 0 && m == 0 && abs(s) < 4) {
                             SCE_CONDITION_T tmp1 = tmp->ConditionListFollowCondition;
                             while (tmp1 != NULL && tmp1->ConditionPointer->isConditionSatisfied == 1) {
                                 tmp1 = tmp1->ConditionListNextMoreConditions;

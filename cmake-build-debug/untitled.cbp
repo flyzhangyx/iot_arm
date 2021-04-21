@@ -8,134 +8,134 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/tmp/tmp.P2dBquDJbH/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/tmp/tmp.P2dBquDJbH/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="untitled">
-				<Option output="/tmp/tmp.P2dBquDJbH/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/tmp/tmp.P2dBquDJbH/cmake-build-debug"/>
+				<Option output="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/8/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/aarch64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
-					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="untitled/fast">
-				<Option output="/tmp/tmp.P2dBquDJbH/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/tmp/tmp.P2dBquDJbH/cmake-build-debug"/>
+				<Option output="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/8/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/aarch64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/tmp/tmp.P2dBquDJbH/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pcYGmWE7ZC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.P2dBquDJbH/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/Connect2Server.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/Connect2Server.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/Connect2Server.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/Connect2Server.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/GetRsa.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/GetRsa.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/GetRsa.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/GetRsa.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/KaisaEncrypt.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/KaisaEncrypt.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/KaisaEncrypt.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/KaisaEncrypt.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RSAUtils.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RSAUtils.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RSAUtils.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RSAUtils.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RecvFromServer.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RecvFromServer.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RecvFromServer.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RecvFromServer.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RegSign.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RegSign.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/RegSign.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RegSign.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/SceCmd.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/SceCmd.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/SceCmd.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/SceCmd.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/SceCmdConfig.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/SceCmdConfig.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/SceCmdConfig.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/SceCmdConfig.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/StrSplit.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/StrSplit.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/StrSplit.h">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/StrSplit.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/main.c">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/main.c">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.P2dBquDJbH/CMakeLists.txt">
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
