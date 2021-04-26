@@ -102,6 +102,12 @@
 		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RSAUtils.h">
 			<Option target="untitled"/>
 		</Unit>
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/Read_ds18b20.c">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pcYGmWE7ZC/Read_ds18b20.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.pcYGmWE7ZC/RecvFromServer.c">
 			<Option target="untitled"/>
 		</Unit>

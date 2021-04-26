@@ -6,6 +6,8 @@
 
 #include "SceCmd.h"
 
+extern char ID[10];
+extern char PWD[10];
 int ErrCnt = 0;
 char HBATime[20];
 char DateFromServer[8];
@@ -28,10 +30,12 @@ void *RecvMsg() {
     IotPacketInterface iotRecStruct;
     while (whileThreadFlag) {
         memset(&iotRecStruct, 0, sizeof(IotPacketInterface));
-        if (recv(LocalSocket, &iotRecStruct, sizeof(IotPacketInterface), 0) == 0) {
+        if (recv(LocalSocket, &iotRecStruct, sizeof(IotPacketInterface), 0) <= 0) {
             printf("Recv Err\n");
             ErrCnt++;
             if (ErrCnt > 10) {
+                close(LocalSocket);
+                Connect2Server();
                 GetRsaKey();
             }
             ErrCnt = 0;
@@ -74,7 +78,7 @@ void *RecvMsg() {
                 pin[6] = 0;
                 releaseStr(outStr, OutStrSize);
                 isPinGet = 1;
-                RegSign("1234567", "1234567");//Next
+                RegSign(ID, PWD);//Next
             }
                 break;
             case 3:
@@ -85,6 +89,24 @@ void *RecvMsg() {
                 if (AddCondMsg2List(iotRecStruct)) {
                     printf("Add CondMsg Err\n");
                 }
+                break;
+            case 5: {
+                Decrypt(iotRecStruct.payLoad, strlen(iotRecStruct.payLoad), pin, iotRecStruct.payLoad);
+                int OutStrSize = 0;
+                char **outStr = StrSplit(iotRecStruct.payLoad, strlen(iotRecStruct.payLoad), &OutStrSize, '_');
+                if (OutStrSize != 5) {
+                    releaseStr(outStr, OutStrSize);
+                    break; ///
+                }
+                switch (atoi(outStr[0])) {
+                    case 98:
+                    checkSceTriggerEvent(outStr[2]);
+                        break;
+                    default:
+                        break;
+                }
+                releaseStr(outStr, OutStrSize);
+            }
                 break;
             case 0:
                 Decrypt(iotRecStruct.payLoad,strlen(iotRecStruct.payLoad),pin,iotRecStruct.payLoad);
@@ -106,10 +128,13 @@ void *RecvMsg() {
                 }
                 releaseStr(outStr, OutStrSize);
                 break;
-            default:
+            case 6:
                 if (AddMsg2List(iotRecStruct) != 0) {
                     printf("Add Msg Err\n");
                 }
+                break;
+            default:
+                printf("Rec:%s\n",&iotRecStruct);
                 break;
         }
     }

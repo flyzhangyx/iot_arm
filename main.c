@@ -3,6 +3,7 @@
 #include "RecvFromServer.h"
 #include "SceCmd.h"
 #include "SceCmdConfig.h"
+#include "Read_ds18b20.h"
 
 extern
 struct SceCmdHead_S
@@ -22,6 +23,8 @@ extern int LocalSocket;
 extern pthread_mutex_t MSG_LIST_MUTEX;
 int isRegSign = 0;
 int whileThreadFlag = 1;
+char ID[10];
+char PWD[10];
 int GetIotCmd(int devClass){
     IotPacketInterface tmp;
     memset(&tmp, 0, sizeof(IotPacketInterface));
@@ -34,6 +37,18 @@ int GetIotCmd(int devClass){
     return send(LocalSocket,buf,11,0);
 }
 
+int UpdateTempData(float temp){
+    IotPacketInterface tmp;
+    memset(&tmp, 0, sizeof(IotPacketInterface));
+    char buf[20];
+    tmp.opCode[0] = '0';
+    tmp.opCode[1] = '4';
+    sprintf(tmp.payLoad,"1_%.2f_",temp);
+    Encrypt(tmp.payLoad, strlen(tmp.payLoad), pin, tmp.payLoad);
+    memcpy(buf, &tmp, 20);
+    return send(LocalSocket,buf,20,0);
+}
+
 void GetSceCmd(){
     IotPacketInterface tmp;
     memset(&tmp, 0, sizeof(IotPacketInterface));
@@ -44,8 +59,12 @@ void GetSceCmd(){
     send(LocalSocket,tmpbuf,11,0);
 }
 
-int main()
+int main(int argc , char** argv)
 {
+    if(argc<4)
+        exit(-1);
+    sprintf(ID,"%s",argv[1]);
+    sprintf(PWD,"%s",argv[2]);
     pthread_mutex_init(&MSG_LIST_MUTEX,NULL);
     memset(&MSG_HEAD,0,sizeof((MSG_HEAD)));
     memset(&SceCmdHead,0,sizeof(struct SceCmdHead_S));
@@ -56,11 +75,11 @@ int main()
     GetRsaKey();
     while (whileThreadFlag)
     {
-
-        sleep(5);
-        GetIotCmd(0);
+        sleep(3);
+        //GetIotCmd(0);
+        GetIotCmd(98);
         GetSceCmd();
-
+        UpdateTempData(ReadTemperature(argv[3]));
     };
     pthread_mutex_destroy(&MSG_LIST_MUTEX);
 }

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/tmp/tmp.pcYGmWE7ZC/GetRsa.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/GetRsa.c.o"
   "/tmp/tmp.pcYGmWE7ZC/KaisaEncrypt.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/KaisaEncrypt.c.o"
   "/tmp/tmp.pcYGmWE7ZC/RSAUtils.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/RSAUtils.c.o"
+  "/tmp/tmp.pcYGmWE7ZC/Read_ds18b20.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/Read_ds18b20.c.o"
   "/tmp/tmp.pcYGmWE7ZC/RecvFromServer.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/RecvFromServer.c.o"
   "/tmp/tmp.pcYGmWE7ZC/RegSign.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/RegSign.c.o"
   "/tmp/tmp.pcYGmWE7ZC/SceCmd.c" "/tmp/tmp.pcYGmWE7ZC/cmake-build-debug/CMakeFiles/untitled.dir/SceCmd.c.o"

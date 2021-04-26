@@ -3,7 +3,7 @@ project(untitled C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(untitled main.c RSAUtils.c RSAUtils.h KaisaEncrypt.c KaisaEncrypt.h Connect2Server.c Connect2Server.h RecvFromServer.c RecvFromServer.h SceCmd.c SceCmd.h GetRsa.c GetRsa.h StrSplit.c StrSplit.h RegSign.c RegSign.h SceCmdConfig.c SceCmdConfig.h)
+add_executable(untitled main.c RSAUtils.c RSAUtils.h KaisaEncrypt.c KaisaEncrypt.h Connect2Server.c Connect2Server.h RecvFromServer.c RecvFromServer.h SceCmd.c SceCmd.h GetRsa.c GetRsa.h StrSplit.c StrSplit.h RegSign.c RegSign.h SceCmdConfig.c SceCmdConfig.h Read_ds18b20.c Read_ds18b20.h)
 
 find_package(Threads)
 

@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled.dir/StrSplit.c.o"
   "CMakeFiles/untitled.dir/RegSign.c.o"
   "CMakeFiles/untitled.dir/SceCmdConfig.c.o"
+  "CMakeFiles/untitled.dir/Read_ds18b20.c.o"
   "untitled.pdb"
   "untitled"
 )

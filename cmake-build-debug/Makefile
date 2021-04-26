@@ -231,6 +231,33 @@ RSAUtils.c.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/RSAUtils.c.s
 .PHONY : RSAUtils.c.s
 
+Read_ds18b20.o: Read_ds18b20.c.o
+
+.PHONY : Read_ds18b20.o
+
+# target to build an object file
+Read_ds18b20.c.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Read_ds18b20.c.o
+.PHONY : Read_ds18b20.c.o
+
+Read_ds18b20.i: Read_ds18b20.c.i
+
+.PHONY : Read_ds18b20.i
+
+# target to preprocess a source file
+Read_ds18b20.c.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Read_ds18b20.c.i
+.PHONY : Read_ds18b20.c.i
+
+Read_ds18b20.s: Read_ds18b20.c.s
+
+.PHONY : Read_ds18b20.s
+
+# target to generate assembly for a file
+Read_ds18b20.c.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Read_ds18b20.c.s
+.PHONY : Read_ds18b20.c.s
+
 RecvFromServer.o: RecvFromServer.c.o
 
 .PHONY : RecvFromServer.o
@@ -414,6 +441,9 @@ help:
 	@echo "... RSAUtils.o"
 	@echo "... RSAUtils.i"
 	@echo "... RSAUtils.s"
+	@echo "... Read_ds18b20.o"
+	@echo "... Read_ds18b20.i"
+	@echo "... Read_ds18b20.s"
 	@echo "... RecvFromServer.o"
 	@echo "... RecvFromServer.i"
 	@echo "... RecvFromServer.s"
