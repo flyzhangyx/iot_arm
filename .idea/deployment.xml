@@ -25,6 +25,16 @@
           </excludedPaths>
         </serverdata>
       </paths>
+      <paths name="Remote Host (2) (1166b76f-407b-4a26-be2a-4416af49103d)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.pKH0qYIVHB" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
       <paths name="rasp3B+ (c2bda281-0574-40ee-99a2-07901773ffc9)">
         <serverdata>
           <mappings>

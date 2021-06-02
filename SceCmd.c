@@ -140,7 +140,6 @@ int AddCondMsg2List(IotPacketInterface CondRecvStruct) {
     COND_RECV_T NewConRec = (COND_RECV_T) malloc(sizeof(struct ConditionMsgRecv));
     if (NewConRec == NULL)
         return -2;
-    //printf("1==========%x\n", NewConRec);
     memset(NewConRec, 0, sizeof(IotPacketInterface));
     NewConRec->next = NULL;
     memcpy(&(NewConRec->recv), &CondRecvStruct, sizeof(IotPacketInterface));
@@ -175,7 +174,7 @@ void *UpdateConditionStatus() {
             tmp = tmp->CondListNextMoreCond;
         }
         GetIotData(id_list, len);
-        sleep(3);
+        usleep(500000);
         if (pthread_mutex_trylock(&COND_RECV_LIST_MUTEX) != 0) {
             printf("BUSY UPDATING COND LIST\n");
             continue;
@@ -214,7 +213,7 @@ void *UpdateConditionStatus() {
                             else
                                 tmp_cond->isConditionSatisfied = 0;
                         }
-                        printf("%s__________%d\n", tmp_cond->ConditionEvent, tmp_cond->isConditionSatisfied);
+                        //printf("%s__________%d\n", tmp_cond->ConditionEvent, tmp_cond->isConditionSatisfied);
                     }
                     tmp_cond = tmp_cond->CondListNextMoreCond;
                 }
@@ -296,7 +295,7 @@ void *checkTimeSceCmd() {
     char weekday[8];
     int y, m, d;
     while (whileThreadFlag) {
-        sleep(2);
+        sleep(3);
         y = HBATime[0] * 1000 + HBATime[1] * 100 + HBATime[2] * 10 + HBATime[3];
         m = HBATime[5] * 10 + HBATime[6];
         d = HBATime[8] * 10 + HBATime[9];
